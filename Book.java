@@ -12,8 +12,8 @@ public class Book
     private String author;
     private String title;
     private int pages;
-    private String refNumber = "refNumber";
-    private int borrowed;
+    private String refNumber = "";
+    private int borrowed = 0;
     private boolean courseText; 
     
     /**
@@ -25,11 +25,11 @@ public class Book
         author = bookAuthor;
         title = bookTitle;
         pages = bookPages;
-        courseText = isCourseText
+        courseText = isCourseText;
     }
 
     // Add the methods here ...
-    public String getAuthor(){
+    public String getAuthor() {
         return author;
     }
     public String getTitle (){
@@ -38,17 +38,47 @@ public class Book
     public int getPages (){
         return pages;
     }
-    public void printAuthor (){
+    public boolean isCourseText(){
+        return courseText;
+    }
+    public int getBorrowed () {
+        return borrowed;
+    }
+    public String getRefNumber() {
+        return refNumber;
+    }
+    
+     public void printAuthor() {
         System.out.println("Author:" + author);
     }
     public void printTitle() {
         System.out.println("Title:" + title);
     }
-    public void printDetails(){
-        System.out.println("Title:"+ title + ",Author" + author + "Pages" + pages);
-    }
-    if (refNumber.length() > 0)
-
-    {System.outprintln("ReferenceNumber:" + refNumber);
+    public void printPages() {
+        System.out.println("Pages:" + pages);
+    
+        if(refNumber.length() > 0) {
+            System.out.println("ReferenceNumber:" + refNumber);
+        }
+        else { System.out.println("Reference Number: ZZZ"); 
+        }
+        System.out.println("Borrowed: " + borrowed + "times");
+        System.out.println("Course Text:" + (courseText ? "Yes" : "No"));
 }
-else { 
+    public void 
+    setRefNumber(String ref) {
+    if (ref.length() >=3) {
+        this.refNumber = ref;
+    } else {
+        System.out.println ("Error:Reference number must be at least 3 characters long.");
+    }
+}
+
+    public void borrow() {
+    borrowed++;
+}
+}
+
+
+
+    
