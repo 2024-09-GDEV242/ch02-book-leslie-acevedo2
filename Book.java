@@ -12,8 +12,8 @@ public class Book
     private String author;
     private String title;
     private int pages;
-    private String refNumber = "";
-    private int borrowed = 0;
+    private String refNumber;
+    private int borrowed;
     private boolean courseText; 
     
     /**
@@ -22,10 +22,11 @@ public class Book
      */
     public Book(String bookAuthor, String bookTitle, int bookPages, boolean isCourseText)
     {
-        author = bookAuthor;
-        title = bookTitle;
-        pages = bookPages;
-        courseText = isCourseText;
+        this.author = bookAuthor;
+        this.title = bookTitle;
+        this.pages = bookPages;
+        this.courseText = isCourseText;
+        this.refNumber = "";
     }
 
     // Add the methods here ...
@@ -38,45 +39,38 @@ public class Book
     public int getPages (){
         return pages;
     }
-    public boolean isCourseText(){
-        return courseText;
+    public String getRefNumber() {
+        return refNumber;
     }
     public int getBorrowed () {
         return borrowed;
     }
-    public String getRefNumber() {
-        return refNumber;
+    public boolean isCourseText(){
+        return courseText;
     }
-    
-     public void printAuthor() {
+
+    public void 
+    setRefNumber(String ref) {
+        if (ref.length() >=3) {
+            this.refNumber = ref;
+        } else {
+            System.out.println("Error!");
+        }
+    }
+    public void borrow() {
+        this.borrowed++;
+    }
+    public void printAuthor() {
         System.out.println("Author:" + author);
     }
     public void printTitle() {
         System.out.println("Title:" + title);
     }
-    public void printPages() {
-        System.out.println("Pages:" + pages);
-    
-        if(refNumber.length() > 0) {
-            System.out.println("ReferenceNumber:" + refNumber);
-        }
-        else { System.out.println("Reference Number: ZZZ"); 
-        }
-        System.out.println("Borrowed: " + borrowed + "times");
-        System.out.println("Course Text:" + (courseText ? "Yes" : "No"));
-}
-    public void 
-    setRefNumber(String ref) {
-    if (ref.length() >=3) {
-        this.refNumber = ref;
-    } else {
-        System.out.println ("Error:Reference number must be at least 3 characters long.");
+    public void printDetails() {
+        String refNum = refNumber.isEmpty()? "ZZZ":refNumber;
+        System.out.println("Title:" + title + ", Author: " + author + ", Pages: " + pages + ", RefNumber: " + refNum + ",Borrowed: " + borrowed);
     }
-}
-
-    public void borrow() {
-    borrowed++;
-}
+   
 }
 
 
